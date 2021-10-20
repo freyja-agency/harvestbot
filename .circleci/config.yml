@@ -95,23 +95,23 @@ only-tags: &only-tags
 
 workflows:
   version: 2
-  test_and_deploy:
-    jobs:
-      - test
-      - build:
-          requires:
-            - test
-          filters:
-            branches:
-              only: dev
-      - automerge:
-          requires:
-            - test
-          filters:
-            branches:
-              only: /greenkeeper\S*/
-      - deploy_prod:
-          <<: *only-tags
+  # test_and_deploy:
+  #   jobs:
+  #     - test
+  #     - build:
+  #         requires:
+  #           - test
+  #         filters:
+  #           branches:
+  #             only: dev
+  #     - automerge:
+  #         requires:
+  #           - test
+  #         filters:
+  #           branches:
+  #             only: /greenkeeper\S*/
+  #     - deploy_prod:
+  #         <<: *only-tags
   notify:
     triggers:
       - schedule:
@@ -119,6 +119,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - notify
